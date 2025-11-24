@@ -8,23 +8,18 @@ export default {
     theme: {
         extend: {
             colors: {
-                brand: {
-                    DEFAULT: '#4318FF', // Brand Blue
+                // We can extend or overwrite. Since we want strict Orion style, we'll rely on Slate/Indigo.
+                // Default Tailwind colors are fine, but we can alias 'primary' if we want.
+                primary: {
+                    DEFAULT: '#6366f1', // Indigo-500
+                    foreground: '#ffffff',
                 },
-                light: {
-                    primary: '#F4F7FE', // Main Background
-                    card: '#FFFFFF',    // Card Background
-                    text: '#2B3674',    // Primary Text
-                },
-                dark: {
-                    primary: '#0B1437', // Deep Navy Background
-                    card: '#111C44',    // Navy Card Background
-                    text: '#E0E5F2',    // Off-white Text
-                }
             },
-            fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-            }
+            borderRadius: {
+                lg: '0.5rem',
+                xl: '0.75rem',
+                '2xl': '1rem',
+            },
         },
     },
     plugins: [],

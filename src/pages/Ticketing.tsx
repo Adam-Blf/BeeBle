@@ -1,165 +1,178 @@
 import { useState } from 'react';
-import { Calendar, MapPin, Plus, Search, Filter } from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { PaymentOption } from '../components/ticketing/PaymentOption';
-import { cn } from '../lib/utils';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Calendar, MapPin, Bus, Utensils, Shirt, CreditCard, CheckCircle2 } from 'lucide-react';
+import { clsx } from 'clsx';
 
-const participants = [
-    { id: 1, name: 'Alice Dupont', email: 'alice@example.com', status: 'Payé', amount: '150€' },
-    { id: 2, name: 'Bob Martin', email: 'bob@example.com', status: 'En attente', amount: '50€' },
-    { id: 3, name: 'Charlie Durand', email: 'charlie@example.com', status: 'Caution reçue', amount: '150€' },
-    { id: 4, name: 'David Bernard', email: 'david@example.com', status: 'Payé', amount: '150€' },
-    { id: 5, name: 'Eve Thomas', email: 'eve@example.com', status: 'En attente', amount: '50€' },
-];
-
-export default function Ticketing() {
-    const [paymentType, setPaymentType] = useState<'cash' | 'installments'>('cash');
+export function Ticketing() {
+    const [paymentPlan, setPaymentPlan] = useState<'full' | '3x'>('full');
+    const [busOption, setBusOption] = useState<'A' | 'B' | null>(null);
 
     return (
-        <div className="space-y-8">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">Billetterie WEI 2024</h1>
-                    <p className="text-gray-500 dark:text-gray-400">Gérez vos événements et vos participants</p>
-                </div>
-                <button className="flex items-center gap-2 bg-brand-DEFAULT hover:bg-brand-DEFAULT/90 text-white px-4 py-2 rounded-xl transition-colors">
-                    <Plus size={20} />
-                    <span>Créer un événement</span>
-                </button>
+        <div className="space-y-6 max-w-5xl mx-auto">
+            <div>
+                <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Billetterie & Événements</h1>
+                <p className="text-slate-500 dark:text-slate-400">Gérez vos inscriptions aux événements majeurs.</p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Event Details & Payment Options */}
-                <div className="lg:col-span-2 space-y-6">
-                    <Card className="p-6">
-                        <h3 className="text-lg font-bold text-light-text dark:text-dark-text mb-6">Configuration de l'événement</h3>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Nom de l'événement</label>
-                                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-light-primary dark:bg-dark-primary border border-transparent focus-within:border-brand-DEFAULT transition-colors">
-                                    <Calendar size={18} className="text-gray-400" />
-                                    <input type="text" defaultValue="Week-end d'Intégration 2024" className="bg-transparent border-none outline-none w-full text-light-text dark:text-dark-text" />
+            <div className="grid gap-6 lg:grid-cols-3">
+                {/* Event Details Column */}
+                <div className="lg:col-span-1 space-y-6">
+                    <Card className="overflow-hidden">
+                        <div className="h-48 bg-indigo-600 relative">
+                            <img
+                                src="https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                alt="WEI Event"
+                                className="w-full h-full object-cover opacity-80"
+                            />
+                            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur text-indigo-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+                                Ouvert
+                            </div>
+                        </div>
+                        <CardContent className="p-6">
+                            <h2 className="text-2xl font-bold mb-2">WEI 2025 - Intégration</h2>
+                            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                                <div className="flex items-center gap-3">
+                                    <Calendar className="text-indigo-500" size={18} />
+                                    <span>24 - 26 Septembre 2025</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <MapPin className="text-indigo-500" size={18} />
+                                    <span>Camping des Flots Bleus, Landes</span>
                                 </div>
                             </div>
-
-                            <div className="space-y-2">
-                                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Lieu</label>
-                                <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-light-primary dark:bg-dark-primary border border-transparent focus-within:border-brand-DEFAULT transition-colors">
-                                    <MapPin size={18} className="text-gray-400" />
-                                    <input type="text" defaultValue="Camping des Flots Bleus" className="bg-transparent border-none outline-none w-full text-light-text dark:text-dark-text" />
+                            <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <div className="flex justify-between items-end mb-1">
+                                    <span className="text-sm font-medium text-slate-500">Prix Adhérent</span>
+                                    <span className="text-2xl font-bold text-indigo-600">145€</span>
                                 </div>
+                                <p className="text-xs text-slate-400 text-right">ou 3x 48.33€</p>
                             </div>
-                        </div>
-
-                        <div className="space-y-4">
-                            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Options de paiement proposées</label>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <PaymentOption
-                                    type="cash"
-                                    selected={paymentType === 'cash'}
-                                    onClick={() => setPaymentType('cash')}
-                                />
-                                <PaymentOption
-                                    type="installments"
-                                    selected={paymentType === 'installments'}
-                                    onClick={() => setPaymentType('installments')}
-                                />
-                            </div>
-                        </div>
-                    </Card>
-
-                    {/* Participants List */}
-                    <Card className="p-6">
-                        <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-bold text-light-text dark:text-dark-text">Participants ({participants.length})</h3>
-                            <div className="flex gap-2">
-                                <button className="p-2 hover:bg-light-primary dark:hover:bg-dark-primary rounded-lg text-gray-500 transition-colors">
-                                    <Search size={20} />
-                                </button>
-                                <button className="p-2 hover:bg-light-primary dark:hover:bg-dark-primary rounded-lg text-gray-500 transition-colors">
-                                    <Filter size={20} />
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead>
-                                    <tr className="text-left text-sm text-gray-500 dark:text-gray-400 border-b border-gray-100 dark:border-gray-800">
-                                        <th className="pb-3 font-medium">Nom</th>
-                                        <th className="pb-3 font-medium">Email</th>
-                                        <th className="pb-3 font-medium">Montant</th>
-                                        <th className="pb-3 font-medium">Status</th>
-                                        <th className="pb-3 font-medium"></th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
-                                    {participants.map((participant) => (
-                                        <tr key={participant.id} className="group hover:bg-light-primary/50 dark:hover:bg-dark-primary/50 transition-colors">
-                                            <td className="py-3 text-light-text dark:text-dark-text font-medium">{participant.name}</td>
-                                            <td className="py-3 text-gray-500">{participant.email}</td>
-                                            <td className="py-3 text-light-text dark:text-dark-text">{participant.amount}</td>
-                                            <td className="py-3">
-                                                <span className={cn(
-                                                    "px-2 py-1 rounded-full text-xs font-medium",
-                                                    participant.status === 'Payé' && "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400",
-                                                    participant.status === 'En attente' && "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400",
-                                                    participant.status === 'Caution reçue' && "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
-                                                )}>
-                                                    {participant.status}
-                                                </span>
-                                            </td>
-                                            <td className="py-3 text-right">
-                                                <button className="text-gray-400 hover:text-brand-DEFAULT opacity-0 group-hover:opacity-100 transition-all">
-                                                    Edit
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                        </CardContent>
                     </Card>
                 </div>
 
-                {/* Sidebar Stats */}
-                <div className="space-y-6">
-                    <Card className="p-6 bg-brand-DEFAULT text-white">
-                        <h3 className="text-lg font-bold mb-2">Total Collecté</h3>
-                        <p className="text-3xl font-bold mb-4">12,450 €</p>
-                        <div className="w-full bg-white/20 rounded-full h-2 mb-2">
-                            <div className="bg-white h-2 rounded-full" style={{ width: '75%' }}></div>
-                        </div>
-                        <p className="text-sm opacity-80">75% de l'objectif atteint</p>
-                    </Card>
+                {/* Form Column */}
+                <div className="lg:col-span-2">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Formulaire d'inscription</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-8">
 
-                    <Card className="p-6">
-                        <h3 className="text-lg font-bold text-light-text dark:text-dark-text mb-4">Répartition</h3>
-                        <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                    <span className="text-sm text-gray-500">Payé</span>
+                            {/* Payment Options */}
+                            <section>
+                                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-200 mb-4 flex items-center gap-2">
+                                    <CreditCard size={16} />
+                                    Option de Paiement
+                                </h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div
+                                        onClick={() => setPaymentPlan('full')}
+                                        className={clsx(
+                                            "cursor-pointer rounded-xl border p-4 transition-all hover:border-indigo-300 dark:hover:border-indigo-700",
+                                            paymentPlan === 'full'
+                                                ? "border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 ring-1 ring-indigo-600"
+                                                : "border-slate-200 dark:border-slate-800"
+                                        )}
+                                    >
+                                        <div className="flex justify-between items-start mb-2">
+                                            <span className="font-semibold">Comptant</span>
+                                            {paymentPlan === 'full' && <CheckCircle2 size={18} className="text-indigo-600" />}
+                                        </div>
+                                        <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">145€</p>
+                                        <p className="text-xs text-slate-500 mt-1">Paiement unique immédiat</p>
+                                    </div>
+
+                                    <div
+                                        onClick={() => setPaymentPlan('3x')}
+                                        className={clsx(
+                                            "cursor-pointer rounded-xl border p-4 transition-all hover:border-indigo-300 dark:hover:border-indigo-700",
+                                            paymentPlan === '3x'
+                                                ? "border-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 ring-1 ring-indigo-600"
+                                                : "border-slate-200 dark:border-slate-800"
+                                        )}
+                                    >
+                                        <div className="flex justify-between items-start mb-2">
+                                            <span className="font-semibold">3x Sans Frais</span>
+                                            {paymentPlan === '3x' && <CheckCircle2 size={18} className="text-indigo-600" />}
+                                        </div>
+                                        <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">48.33€ <span className="text-sm font-normal text-slate-500">/mois</span></p>
+                                        <p className="text-xs text-slate-500 mt-1">Premier prélèvement aujourd'hui</p>
+                                    </div>
                                 </div>
-                                <span className="font-bold text-light-text dark:text-dark-text">65%</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-orange-500"></div>
-                                    <span className="text-sm text-gray-500">En attente</span>
+                            </section>
+
+                            {/* Transport */}
+                            <section>
+                                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-200 mb-4 flex items-center gap-2">
+                                    <Bus size={16} />
+                                    Transport (Bus)
+                                </h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    {['A', 'B'].map((bus) => (
+                                        <button
+                                            key={bus}
+                                            onClick={() => setBusOption(bus as 'A' | 'B')}
+                                            className={clsx(
+                                                "flex items-center justify-between p-4 rounded-lg border text-left transition-all",
+                                                busOption === bus
+                                                    ? "border-indigo-600 bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300"
+                                                    : "border-slate-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800"
+                                            )}
+                                        >
+                                            <div>
+                                                <span className="font-medium">Bus {bus} - Ambiance {bus === 'A' ? 'Chill' : 'Fiesta'}</span>
+                                                <p className="text-xs text-slate-500 mt-0.5">Départ 14h00 - Parvis</p>
+                                            </div>
+                                            {busOption === bus && <CheckCircle2 size={18} />}
+                                        </button>
+                                    ))}
                                 </div>
-                                <span className="font-bold text-light-text dark:text-dark-text">25%</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                                    <span className="text-sm text-gray-500">Caution</span>
+                            </section>
+
+                            {/* Preferences */}
+                            <section className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label className="text-sm font-semibold text-slate-900 dark:text-slate-200 mb-2 flex items-center gap-2">
+                                        <Utensils size={16} />
+                                        Régime Alimentaire
+                                    </label>
+                                    <select className="w-full h-10 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-800 dark:bg-slate-950">
+                                        <option>Standard</option>
+                                        <option>Végétarien</option>
+                                        <option>Sans Porc</option>
+                                        <option>Sans Gluten</option>
+                                        <option>Halal</option>
+                                    </select>
                                 </div>
-                                <span className="font-bold text-light-text dark:text-dark-text">10%</span>
+
+                                <div>
+                                    <label className="text-sm font-semibold text-slate-900 dark:text-slate-200 mb-2 flex items-center gap-2">
+                                        <Shirt size={16} />
+                                        Taille T-shirt
+                                    </label>
+                                    <select className="w-full h-10 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:border-slate-800 dark:bg-slate-950">
+                                        <option>XS</option>
+                                        <option>S</option>
+                                        <option>M</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+                                        <option>XXL</option>
+                                    </select>
+                                </div>
+                            </section>
+
+                            <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+                                <Button size="lg" className="w-full">
+                                    Valider et Payer {paymentPlan === 'full' ? '145.00€' : '48.33€'}
+                                </Button>
+                                <p className="text-center text-xs text-slate-400 mt-3">
+                                    Paiement sécurisé via Stripe. En validant, vous acceptez le règlement intérieur du WEI.
+                                </p>
                             </div>
-                        </div>
+
+                        </CardContent>
                     </Card>
                 </div>
             </div>

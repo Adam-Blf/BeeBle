@@ -1,80 +1,91 @@
-import { Search, Filter } from 'lucide-react';
-import { ProductCard } from '../components/shop/ProductCard';
+import { Card, CardContent } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
+import { ShoppingBag, Shirt, Coffee, Ticket } from 'lucide-react';
 
-const products = [
-    {
-        id: 1,
-        name: 'Pull de Promo 2024',
-        price: '35.00 €',
-        image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        variants: ['S', 'M', 'L', 'XL']
-    },
-    {
-        id: 2,
-        name: 'T-Shirt BDE',
-        price: '15.00 €',
-        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        variants: ['XS', 'S', 'M', 'L', 'XL']
-    },
-    {
-        id: 3,
-        name: 'Casquette Logo',
-        price: '20.00 €',
-        image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        variants: ['TU']
-    },
-    {
-        id: 4,
-        name: 'Gourde Métal',
-        price: '12.00 €',
-        image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        variants: ['50cl', '1L']
-    },
-    {
-        id: 5,
-        name: 'Tote Bag',
-        price: '8.00 €',
-        image: 'https://images.unsplash.com/photo-1597484662317-9bd7bdda2907?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        variants: ['TU']
-    },
-    {
-        id: 6,
-        name: 'Stickers Pack',
-        price: '5.00 €',
-        image: 'https://images.unsplash.com/photo-1572375992501-4b0892d50c69?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        variants: ['Pack 1', 'Pack 2']
-    }
-];
+export function Shop() {
+    const products = [
+        {
+            id: 1,
+            name: 'Pull de Promo 2025',
+            price: 35.00,
+            image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            category: 'Vêtements',
+            customizable: true,
+            icon: Shirt
+        },
+        {
+            id: 2,
+            name: 'Mug BDE',
+            price: 12.00,
+            image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            category: 'Goodies',
+            customizable: false,
+            icon: Coffee
+        },
+        {
+            id: 3,
+            name: 'Ticket Gala Hiver',
+            price: 25.00,
+            image: 'https://images.unsplash.com/photo-1514525253440-b393452e3383?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            category: 'Billetterie',
+            customizable: false,
+            icon: Ticket
+        }
+    ];
 
-export default function Shop() {
     return (
-        <div className="space-y-8">
-            {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">Boutique BDE</h1>
-                    <p className="text-gray-500 dark:text-gray-400">Commandez vos goodies et pulls de promo</p>
-                </div>
-
-                <div className="flex gap-2">
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                        <input
-                            type="text"
-                            placeholder="Rechercher un produit..."
-                            className="pl-10 pr-4 py-2 rounded-xl bg-white dark:bg-dark-card border border-transparent focus:border-brand-DEFAULT outline-none text-sm text-light-text dark:text-dark-text shadow-sm"
-                        />
-                    </div>
-                    <button className="p-2 bg-white dark:bg-dark-card rounded-xl text-gray-500 hover:text-brand-DEFAULT shadow-sm transition-colors">
-                        <Filter size={20} />
-                    </button>
-                </div>
+        <div className="space-y-6">
+            <div>
+                <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">Boutique & Merch</h1>
+                <p className="text-slate-500 dark:text-slate-400">Commandez vos goodies et pulls de promo.</p>
             </div>
 
-            {/* Product Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {products.map((product) => (
-                    <ProductCard key={product.id} {...product} />
+                    <Card key={product.id} className="overflow-hidden flex flex-col">
+                        <div className="h-48 relative bg-slate-100 dark:bg-slate-800">
+                            <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute top-3 right-3 bg-white/90 backdrop-blur p-2 rounded-full text-indigo-600 shadow-sm">
+                                <product.icon size={18} />
+                            </div>
+                        </div>
+                        <CardContent className="p-5 flex-1 flex flex-col">
+                            <div className="flex justify-between items-start mb-2">
+                                <div>
+                                    <span className="text-xs font-medium text-indigo-600 uppercase tracking-wider">{product.category}</span>
+                                    <h3 className="font-bold text-lg text-slate-900 dark:text-slate-50">{product.name}</h3>
+                                </div>
+                                <span className="font-bold text-lg">{product.price.toFixed(2)}€</span>
+                            </div>
+
+                            {product.customizable && (
+                                <div className="mt-4 space-y-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+                                    <p className="text-xs font-semibold text-slate-500 uppercase">Personnalisation</p>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <select className="h-9 rounded-md border border-slate-200 bg-white px-2 text-sm dark:border-slate-700 dark:bg-slate-900">
+                                            <option>Taille S</option>
+                                            <option>Taille M</option>
+                                            <option>Taille L</option>
+                                            <option>Taille XL</option>
+                                        </select>
+                                        <Input placeholder="Surnom (Dos)" className="h-9" />
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="mt-auto pt-4">
+                                <Button className="w-full gap-2">
+                                    <ShoppingBag size={18} />
+                                    Ajouter au panier
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
                 ))}
             </div>
         </div>
