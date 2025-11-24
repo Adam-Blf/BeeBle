@@ -49,9 +49,9 @@ export function MainLayout({ children }: MainLayoutProps) {
 
     const navItems = [
         { icon: LayoutDashboard, label: 'Vue d\'ensemble', path: '/' },
-        { icon: Ticket, label: 'Billetterie', path: '/ticketing' },
+        { icon: Ticket, label: 'Billetterie', path: '/shop' },
+        { icon: ShoppingBag, label: 'Merch', path: '/merch' },
         { icon: Users, label: 'Adhérents', path: '/members' },
-        { icon: ShoppingBag, label: 'Boutique', path: '/shop' },
         { icon: Wallet, label: 'Trésorerie', path: '/finance' },
         { icon: Settings, label: 'Paramètres', path: '/settings' },
     ];

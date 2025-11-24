@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { Dashboard } from './pages/Dashboard';
-import { Ticketing } from './pages/Ticketing';
-
 import { Shop } from './pages/Shop';
+import { Merch } from './pages/Merch';
 import { Members } from './pages/Members';
 
 // Placeholder components for other routes
@@ -20,9 +19,9 @@ function App() {
       <MainLayout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/ticketing" element={<Ticketing />} />
-          <Route path="/members" element={<Members />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/merch" element={<Merch />} />
+          <Route path="/members" element={<Members />} />
           <Route path="/finance" element={<Placeholder title="Trésorerie" />} />
           <Route path="/settings" element={<Placeholder title="Paramètres" />} />
         </Routes>
