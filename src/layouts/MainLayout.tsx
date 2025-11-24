@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { BeeChatbot } from '../components/chatbot/BeeChatbot';
 import { clsx } from 'clsx';
 
 interface MainLayoutProps {
@@ -159,6 +160,9 @@ export function MainLayout({ children }: MainLayoutProps) {
                     {children}
                 </main>
             </div>
+
+            {/* Bee Chatbot */}
+            <BeeChatbot />
         </div>
     );
 }
