@@ -3,6 +3,14 @@
 
 ![Dernier commit](https://img.shields.io/github/last-commit/Adam-Blf/BeeBle?style=flat&logo=git&logoColor=white&color=0080ff&label=Dernier%20commit) ![Langage principal](https://img.shields.io/github/languages/top/Adam-Blf/BeeBle?style=flat&logo=git&logoColor=white&color=0080ff&label=Langage%20principal) ![Nombre de langages](https://img.shields.io/github/languages/count/Adam-Blf/BeeBle?style=flat&logo=git&logoColor=white&color=0080ff&label=Nombre%20de%20langages)
 
+## 📝 Description
+Application web BeeBle.
+
+## ⚡ Fonctionnalités
+- Interface moderne
+- Application web
+
+
 ### Construit avec les outils et technologies : 
 
 ![TypeScript](https://img.shields.io/badge/-TypeScript-0080ff?style=flat) ![JavaScript](https://img.shields.io/badge/-JavaScript-0080ff?style=flat) ![CSS](https://img.shields.io/badge/-CSS-0080ff?style=flat) ![HTML](https://img.shields.io/badge/-HTML-0080ff?style=flat)
