@@ -1,3 +1,11 @@
+Dernier commit: 24/11/2025 | Langage principal: TypeScript | Nombre de langages: 4
+
+Construit avec les outils et technologies : 
+TypeScript, JavaScript, CSS, HTML
+
+🇫🇷 Français | 🇬🇧 Anglais | 🇪🇸 Espagnol | 🇮🇹 Italien | 🇵🇹 Portugais | 🇷🇺 Russe | 🇩🇪 Allemand | 🇹🇷 Turc
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
