@@ -1,10 +1,9 @@
-Dernier commit: 24/11/2025 | Langage principal: TypeScript | Nombre de langages: 4
+![Dernier commit](https://img.shields.io/badge/Dernier%20commit-09/12/2025-brightgreen) ![Langage principal](https://img.shields.io/badge/Langage%20principal-TypeScript-blue) ![Nombre de langages](https://img.shields.io/badge/Nombre%20de%20langages-4-orange)
 
-Construit avec les outils et technologies : 
-TypeScript, JavaScript, CSS, HTML
+### Construit avec les outils et technologies : 
+![TypeScript](https://img.shields.io/badge/-TypeScript-lightgrey) ![JavaScript](https://img.shields.io/badge/-JavaScript-lightgrey) ![CSS](https://img.shields.io/badge/-CSS-lightgrey) ![HTML](https://img.shields.io/badge/-HTML-lightgrey)
 
 🇫🇷 Français | 🇬🇧 Anglais | 🇪🇸 Espagnol | 🇮🇹 Italien | 🇵🇹 Portugais | 🇷🇺 Russe | 🇩🇪 Allemand | 🇹🇷 Turc
-
 
 # React + TypeScript + Vite
 
