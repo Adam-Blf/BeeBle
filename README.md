@@ -11,7 +11,7 @@
 ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)
 
-Application web BeeBle · plateforme collaborative construite avec React + TypeScript + Vite + Tailwind.
+Application web BeeBle - plateforme collaborative construite avec React + TypeScript + Vite + Tailwind.
 
 ---
 
@@ -41,7 +41,7 @@ flowchart TB
     MAIN["src/main.tsx<br/>bootstrap React + Vite"]
     APP["src/App.tsx<br/>routes"]
     LAY["layouts/MainLayout.tsx<br/>navigation commune"]
-    PAGES["Pages<br/>Dashboard · Members · Merch · Shop · Ticketing"]
+    PAGES["Pages<br/>Dashboard - Members - Merch - Shop - Ticketing"]
     BOT["chatbot/BeeChatbot.tsx<br/>assistant integre"]
     MAIN --> APP --> LAY --> PAGES
     LAY --> BOT
